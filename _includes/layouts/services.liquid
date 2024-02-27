@@ -1,0 +1,62 @@
+{% include 'parts/header.liquid' %}
+	
+	<style type="text/css">
+		.service-intro-section {
+			position: relative;
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+		.service-intro-section .darken {
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			opacity: 0.45;
+		}
+	</style>
+
+		<!-- Service Intro Section -->
+		<section class="service-intro-section fill-black" style="background-image: url({{ image }});">
+			<div class="darken fill-black"></div>
+			<div class="container" style="z-index: 3; text-shadow: 1px 2px 10px rgba(256, 0, 170, 0.5);">
+				<div class="row text-center space-200-top-bottom">
+					<div class="columns small-10 medium-8 large-7 xlarge-5">
+						<div class="h1 space-25-bottom">{{ title | default: 'EaseGlobal' }}</div>
+						<div class="h6">{{ description }}</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END: Service Intro Section -->
+
+		<!-- Service Contact Section -->
+		<section class="service-contact-section space-50-top-bottom text-center">
+			<div class="container">
+				<div class="row">
+					<div class="columns small-12">
+						<div class="h3 space-25-bottom">Get in Touch</div>
+						<a href="mailto:hello@windsorsouza.com" class="email inline-block h5 text-underline space-25 fill-dark" target="_blank">hello@windsorsouza.com</a>
+						<div class="label block space-25-top-bottom">— or —</div>
+						<a href="https://wa.me/917204599816" class="whatsapp inline-block h4 space-min text-teal" target="_blank">WhatsApp</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END: Service Contact Section -->
+
+		<!-- Service Content Section -->
+		<section class="service-content-section space-50-top-bottom text-center">
+			<div class="container">
+				<div class="row">
+					<div class="columns small-12">
+						{{ content }}
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END: Service Content Section -->
+
+{% include 'parts/footer.liquid' %}
