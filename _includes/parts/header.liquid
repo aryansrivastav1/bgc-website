@@ -93,7 +93,9 @@
 	<!-- Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 	<!-- Icons -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Typing JS -->
@@ -113,84 +115,11 @@
 	<div id="page-content"><!-- Page Content -->
 
 
-		<!-- Announcement Section -->
-		<section id="announcement" class="announcement fill-blue-dark">
-			<div class="">
-				<div class="row">
-					<a href="#business-intro" class="columns small-12 space-50-top-bottom text-center cursor-pointer">
-						<div class="p">Register a Business Abroad, End-to-end Service</div>
-					</a>
-				</div>
-			</div>
-		</section>
-		<!-- END: Announcement Section -->
 
 
 
-
-		<style type="text/css">
-			.menu-section {
-				position: fixed;
-				z-index: 11;
-				bottom: var(--space-100);
-				left: 0;
-				right: 0;
-				height: auto;
-				transform: scale(1.05);
-			}
-
-			.menu-section .menu {
-				backdrop-filter: blur(5px);
-				background-color: rgba(255, 255, 255, 0.55);
-				box-shadow: 0 0 1px 1px rgba(0, 102, 255, 0.2), 0 0 var(--space-200) 0px rgba(0, 102, 255, 0.4);
-			}
-			.menu-section .menu .menu-button label {
-				text-align: center;
-			}
-
-			.menu-section .menu .menu-check:checked + .menu-button label {
-				transition: .375s .125s ease-out;
-				background-color: transparent;
-				color: var(--blue-dark);
-			}
-
-			@media( min-width: 640px )  {
-				.menu-section .menu .menu-button label {
-					padding: var(--space-50) var(--space-25)
-				}
-			}
-			@media( min-width: 1040px ) {}
-			@media( min-width: 1480px ) {}
-		</style>
-		<!-- Menu -->
-		<section id="menu" class="menu-section">
-			<div class="row">
-				<div class="menu container space-min radius-25">
-					<div class="columns small-12 space-25 show-small-block hidden"><a href="tel:+919740711696" class="h3 block strong text-blue text-center cursor-pointer space-min">+91-97407-11696</a></div>
-					<input class="menu-check hidden" type="radio" name="menu" id="menu_im" checked="">
-					<div class="menu-button columns small-4 space-min">
-						<label for="menu_im" class="js_menu block cursor-pointer h6 strong fill-blue space-25-left-right space-25-top-bottom radius-25" for="imcalc_us" style="background-image: url('media/flag-us.png');">Immigrate Abroad</label>
-						<a href="#immigration-intro" class="hidden"></a>
-					</div>
-					<input class="menu-check hidden" type="radio" name="menu" id="menu_bi">
-					<div class="menu-button columns small-4 space-min">
-						<label for="menu_bi" class="js_menu block cursor-pointer h6 strong fill-blue-dark space-25-left-right space-25-top-bottom radius-25" for="imcalc_us" style="background-image: url('media/flag-us.png');">Register Business</label>
-						<a href="#business-intro" class="hidden"></a>
-					</div>
-					<input class="menu-check hidden" type="radio" name="menu" id="menu_bc">
-					<div class="menu-button columns small-4 space-min">
-						<label for="menu_bc" class="js_menu block cursor-pointer h6 strong fill-yellow space-25-left-right space-25-top-bottom radius-25" for="imcalc_us" style="background-image: url('media/flag-us.png');">Business Services</label>
-						<a href="#consultation-intro" class="hidden"></a>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- END: Menu -->
-
-
-
-		<!-- Header Section -->
-		<section id="header_section" class="header-section position-relative" style="box-shadow: 0 0 0 1px var(--neutral-2), 0 0 5px 1px var(--neutral-3); z-index: 9;">
+		<!-- Menu Section -->
+		<section id="menu-section" class="menu-section position-relative hidden" style="box-shadow: 0 0 0 1px var(--neutral-2), 0 0 5px 1px var(--neutral-3); z-index: 9;">
 			<div class="container">
 				<div class="row space-75-top-bottom">
 					<div class="logo columns small-8 medium-5 large-3 inline-middle" style="font-size: 0;">
@@ -204,5 +133,5 @@
 				</div>
 			</div>
 		</section>
-		<!-- END: Header Section -->
+		<!-- END: Menu Section -->
 		

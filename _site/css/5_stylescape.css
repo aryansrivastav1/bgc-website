@@ -48,7 +48,7 @@
 	--container-width: 300px;
 	--card: var(--container-width);
 	
-	--font-scale: 1.2;
+	--font-scale: 1.25;
 	--h1-scale: calc(var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale));
 	--h2-scale: calc(var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale));
 	--h3-scale: calc(var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale) * var(--font-scale));
@@ -58,7 +58,8 @@
 	--p-scale: calc(var(--font-scale));
 	--label-scale: calc(var(--font-scale) / var(--font-scale));
 	--small-scale: calc(var(--font-scale) / var(--font-scale) / var(--font-scale));
-	--font-offset: 0.035;
+/*	--font-offset: 0.035;*/
+	--font-offset: 0.0375;
 
 	--h1: calc(var(--h1-scale) * var(--card) * var(--font-offset) );
 	--h2: calc(var(--h2-scale) * var(--card) * var(--font-offset) );
@@ -163,6 +164,16 @@ p, small, label {
  *
  */
 
+/*.h1 { font-size: var(--h1); }*/
+/*.h2 { font-size: var(--h2); }*/
+/*.h3 { font-size: var(--h3); }*/
+/*.h4 { font-size: var(--h4); }*/
+/*.h5 { font-size: var(--h5); }*/
+/*.h6 { font-size: var(--h6); }*/
+/*.p 	{ font-size: var(--p); }*/
+/*.label { font-size: var(--label); }*/
+/*.small { font-size: var(--small); }*/
+
 .h1 { font-size: var(--h1); }
 .h2 { font-size: var(--h2); }
 .h3 { font-size: var(--h3); }
@@ -173,55 +184,55 @@ p, small, label {
 .label { font-size: var(--label); }
 .small { font-size: var(--small); }
 
-.h1, .h2, .h3, .h4, .label, .small, .button {
-	font-family: "Fira Sans Condensed", Arial, serif;
+.font-h {
+	font-family: "Rajdhani", Arial, serif;
 	line-height: 1.125;
 }
 
-.h1 { font-size: 3.6rem; }
-.h2 { font-size: 3.0rem; }
-.h3 { font-size: 2.4rem; }
-.h4 { font-size: 2.0rem; }
-.h5 { font-size: 1.6rem; }
-.h6 { font-size: 1.4rem; }
-.p 	{ font-size: 1.4rem; }
-.small { font-size: 0.8rem; }
-.label { font-size: 1.0rem; }
+/*.h1 { font-size: 3.6rem; }*/
+/*.h2 { font-size: 3.0rem; }*/
+/*.h3 { font-size: 2.4rem; }*/
+/*.h4 { font-size: 2.0rem; }*/
+/*.h5 { font-size: 1.6rem; }*/
+/*.h6 { font-size: 1.4rem; }*/
+/*.p 	{ font-size: 1.4rem; }*/
+/*.small { font-size: 0.8rem; }*/
+/*.label { font-size: 1.0rem; }*/
 
 @media( min-width: 640px )  {
-	.h1 { font-size: 4.0rem; }
-	.h2 { font-size: 3.2rem; }
-	.h3 { font-size: 2.6rem; }
-	.h4 { font-size: 2.2rem; }
-	.h5 { font-size: 1.8rem; }
-	.h6 { font-size: 1.4rem; }
-	.p 	{ font-size: 1.4rem; }
-	.small { font-size: 0.8rem; }
-	.label { font-size: 1.0rem; }
+/*	.h1 { font-size: 4.0rem; }*/
+/*	.h2 { font-size: 3.2rem; }*/
+/*	.h3 { font-size: 2.6rem; }*/
+/*	.h4 { font-size: 2.2rem; }*/
+/*	.h5 { font-size: 1.8rem; }*/
+/*	.h6 { font-size: 1.4rem; }*/
+/*	.p 	{ font-size: 1.4rem; }*/
+/*	.small { font-size: 0.8rem; }*/
+/*	.label { font-size: 1.0rem; }*/
 }
 
 @media( min-width: 1040px ) {
-	.h1 { font-size: 5.4rem; }
-	.h2 { font-size: 4.2rem; }
-	.h3 { font-size: 3.4rem; }
-	.h4 { font-size: 2.6rem; }
-	.h5 { font-size: 2.0rem; }
-	.h6 { font-size: 1.6rem; }
-	.p 	{ font-size: 1.6rem; }
-	.small { font-size: 1.0rem; }
-	.label { font-size: 1.2rem; }
+/*	.h1 { font-size: 5.4rem; }*/
+/*	.h2 { font-size: 4.2rem; }*/
+/*	.h3 { font-size: 3.4rem; }*/
+/*	.h4 { font-size: 2.6rem; }*/
+/*	.h5 { font-size: 2.0rem; }*/
+/*	.h6 { font-size: 1.6rem; }*/
+/*	.p 	{ font-size: 1.6rem; }*/
+/*	.small { font-size: 1.0rem; }*/
+/*	.label { font-size: 1.2rem; }*/
 }
 
 @media( min-width: 1480px ) {
-	.h1 { font-size: 6.2rem; }
-	.h2 { font-size: 4.8rem;  }
-	.h3 { font-size: 3.8rem;  }
-	.h4 { font-size: 3.0rem;  }
-	.h5 { font-size: 2.4rem;  }
-	.h6 { font-size: 1.8rem;  }
-	.p 	{ font-size: 1.8rem;  }
-	.small { font-size: 1.2rem; }
-	.label { font-size: 1.4rem; }
+/*	.h1 { font-size: 6.2rem; }*/
+/*	.h2 { font-size: 4.8rem;  }*/
+/*	.h3 { font-size: 3.8rem;  }*/
+/*	.h4 { font-size: 3.0rem;  }*/
+/*	.h5 { font-size: 2.4rem;  }*/
+/*	.h6 { font-size: 1.8rem;  }*/
+/*	.p 	{ font-size: 1.8rem;  }*/
+/*	.small { font-size: 1.2rem; }*/
+/*	.label { font-size: 1.4rem; }*/
 }
 
 
@@ -417,7 +428,7 @@ button,
 .button {
 	height: var(--space-150);
 	padding: 0 var(--space-50);
-	font-size: var(--p);
+	font-size: var(--label);
 	font-weight: 400;
 	line-height: var(--space-150);
 /*	color: var(--dark);*/
@@ -708,9 +719,9 @@ select {
 
 
 /* EG Footer */
-.eg-footer{}
+.footer-section {}
 
-.eg-footer .link.social {
+.footer-section .link.social {
 	text-indent: -99999px;
 	width: var(--space-150);
 	height: var(--space-150);
