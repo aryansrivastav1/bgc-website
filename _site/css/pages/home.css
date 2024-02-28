@@ -2,4 +2,32 @@
  * Home Page
  */
 
+/* -- Intro Section --  */
+.intro-section {}
 
+.intro-section .logo {
+	cursor: pointer;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.intro-section .logo img{
+	opacity: 0;
+	transition: .375s .125s ease-out;
+	animation-name: logoReveal;
+	animation-duration: 5s;
+}
+.intro-section .logo:hover img{
+	opacity: 1;
+}
+
+@keyframes logoReveal {
+	0%		{ opacity: 1; }
+	75%		{ opacity: 1; }
+	100%	{ opacity: 0; }
+}
+
+@media( min-width: 640px )  {}
+@media( min-width: 1040px ) {}
+@media( min-width: 1480px ) {}
