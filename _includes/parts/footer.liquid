@@ -2,32 +2,34 @@
 
 
 		<!-- Footer Section -->
-		<section id="footer-section" class="footer-section fill-black space-200-top-bottom">
+		<section id="footer-section" class="footer-section space-200-top-bottom">
 			<div class="container">
 				<div class="row">
 					<div class="description columns small-12 medium-6">
 						<div class="logo space-75-bottom"><img class="block" src="media/logo-combination-eng.png" style="width: 66.666%;"></div>
-						<div class="p space-100-bottom space-200-right">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae dicta nisi, tempora, est illo neque sunt cumque minus, similique excepturi maxime tempore? Voluptatibus laudantium autem itaque ea similique error eaque.</div>
+						<div class="p space-100-bottom space-200-right">Your ultimate hospitality partner, providing a wide array of products to meet diverse industry needs, including Kitchenware, Glassware, Cutlery, Bar Equipment, Flatware, Crockery, Buffet Ware, Banquet Equipment, Electrical Appliances, Housekeeping supplies. Specializing in Customized Commercial Kitchens and Turnkey Project Management, to ensure a seamless experience tailored to your specific requirements.</div>
 					</div>
 					<div class="quicklinks columns small-12 medium-3">
 						<div class="h4 font-h strong space-50-top space-25-bottom">Quick Links</div>
-						<a href="/immigration" class="link p inline text-blue-light space-25-bottom">Immigration</a><br>
-						<a href="/business" class="link p inline text-blue-light space-25-bottom">Incorporation</a><br>
-						<a href="/consultation" class="link p inline text-blue-light space-25-bottom">Consultations</a><br>
-						<a href="/about" class="link p inline text-blue-light space-25-bottom">About</a><br>
-						<a href="/privacy" class="link p inline text-blue-light space-25-bottom">Privacy Policy</a><br>
-						<a href="/terms" class="link p inline text-blue-light space-25-bottom">Terms & Conditions</a><br>
+						<a href="#welcome" class="link p inline text-blue-light space-25-bottom">Welcome</a><br>
+						<a href="#hotels" class="link p inline text-blue-light space-25-bottom">Hotels</a><br>
+						<a href="#restaurant" class="link p inline text-blue-light space-25-bottom">Restaurant</a><br>
+						<a href="#bakery" class="link p inline text-blue-light space-25-bottom">Bakery</a><br>
+						<a href="#catering" class="link p inline text-blue-light space-25-bottom">Catering</a><br>
+						<a href="#cta-section" class="link p inline text-blue-light space-25-bottom">Call Back</a><br>
 					</div>
 					<div class="connections columns small-12 medium-3">
 						<div class="h4 font-h strong space-50-top space-25-bottom">Get In Touch</div>
-						<a target="_blank" href="mailto:hello@website.com" class="link p inline text-blue-light space-25-bottom">hello@website.com</a><br>
-						<a target="_blank" href="tel:+919986099860" class="link p inline text-blue-light space-25-bottom">+91-9986099860</a><br>
-						<div class="h4 font-h strong space-50-top space-25-bottom">Socials</div>
-						<a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-linkedin.png');">Linked In</a>
-						<a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-instagram.png');">Instagram</a>
-						<a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-facebook.png');">Facebook</a>
-						<a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-twitter.png');">Twitter - X</a>
-						<a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-youtube.png');">YouTube</a>
+						<a target="_blank" href="mailto:info@bgc.in" class="link p inline text-blue-light space-25-bottom">info@bgc.in</a><br>
+						<a target="_blank" href="tel:08041784600" class="link p inline text-blue-light space-25-bottom">080-4178-4600</a><br>
+						<!-- <div class="h4 font-h strong space-50-top space-25-bottom">Socials</div> -->
+						<!-- <a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-linkedin.png');">Linked In</a> -->
+						<!-- <a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-instagram.png');">Instagram</a> -->
+						<!-- <a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-facebook.png');">Facebook</a> -->
+						<!-- <a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-twitter.png');">Twitter - X</a> -->
+						<!-- <a target="_blank" href="" class="link social p inline text-blue-light space-25-bottom" style="background-image: url('/media/icon-youtube.png');">YouTube</a> -->
+						<div class="h4 font-h strong space-50-top space-25-bottom">Location</div>
+						<a target="_blank" href="https://maps.app.goo.gl/VEVbq6kHabw4rLna7" class="link p inline text-blue-light space-25-bottom">A M Industrial Estate, 7th Mile Hosur Rd, Garvebhavi Palya, Bengaluru, Karnataka 560068</a><br>
 					</div>
 				</div>
 			</div>
@@ -38,7 +40,7 @@
 
 
 		<!-- Copyright Section -->
-		<section class="copyright-section fill-blue-4 space-25-top-bottom" id="copyright-section">
+		<section class="copyright-section space-25-top-bottom" id="copyright-section">
 			<div class="container">
 				<div class="row">
 					<div class="columns small-12">
@@ -158,7 +160,7 @@
 <script>
 	/* Form 1 */
 	document.addEventListener("DOMContentLoaded", function() {
-	    var form = document.getElementById("egImmigrationLeads");
+	    var form = document.getElementById("homeGeneralLeads");
 	    form.addEventListener("submit", function(event) {
 	        event.preventDefault(); // Prevent default form submission
 	        
@@ -169,7 +171,7 @@
 	        var urlEncodedData = new URLSearchParams(formData).toString();
 	        
 	        // Define endpoint URL
-	        var endpoint = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScwVGA7s0ndpD6lX7rQNbFu0yQvPlEZrwwYYkqmebG2FJFR2g/formResponse";
+	        var endpoint = "https://docs.google.com/forms/d/e/1FAIpQLSeG6nfZX6S_nq29su85Olfx_5UT31lj8Mj50WJIwbrVa1wPTw/formResponse";
 	        
 	        // Fetch API POST request
 	        fetch(endpoint, {

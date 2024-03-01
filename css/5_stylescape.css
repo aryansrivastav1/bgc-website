@@ -52,8 +52,10 @@
 	--orange: #F6931A;
 	--orange-dark: #A86512;
 	--orange-dark-dark: #5C370A;
-	--red: #FF3366;
+/*	--red: #FF3366;*/
+	--red: #F23B5C;
 	--yellow: #FFEB3B;
+	--green: #1FCD46;
 
 	--container-width: 300px;
 	--card: var(--container-width);
@@ -145,7 +147,7 @@ html {
 
 body, .body {
 	position: relative;
-	color: var(--neutral-5);
+	color: var(--neutral-6);
 	font-family: "Poppins", Arial, sans-serif;
 	font-weight: 400;
 	font-size: 1.4rem;
@@ -281,7 +283,7 @@ hr {
  *
  */
 
-.fill-weight {
+.fill-white {
 	color: var(--dark);
 	background-color: var(--white); }
 
@@ -336,9 +338,9 @@ hr {
 .fill-orange-light-light {
 	color: var(--dark);
 	background-color: var(--orange-light-light); }
-.fill-blue {
+.fill-orange {
 	color: var(--white);
-	background-color: var(--blue); }
+	background-color: var(--orange); }
 .fill-orange-dark {
 	color: var(--white);
 	background-color: var(--orange-dark); }
@@ -351,6 +353,9 @@ hr {
 .fill-yellow {
 	color: var(--dark);
 	background-color: var(--yellow); }
+.fill-green {
+	color: var(--white);
+	background-color: var(--green); }
 
 
 
@@ -385,6 +390,7 @@ hr {
 .text-orange-dark-dark { color: var(--orange-dark-dark); }
 .text-red { color: var(--red); }
 .text-yellow { color: var(--yellow); }
+.text-green { color: var(--green); }
 
 
 
@@ -489,17 +495,17 @@ input[type="reset"],
 input[type="button"],
 button,
 .button {
-	height: var(--space-150);
-	padding: 0 var(--space-50);
-	font-size: var(--label);
+	height: var(--space-200);
+	padding: 0 var(--space-75);
+	font-size: var(--p);
 	font-weight: 400;
-	line-height: var(--space-150);
+	line-height: var(--space-200);
 /*	color: var(--dark);*/
 /*	background-color: var(--neutral-1);*/
 	letter-spacing: .05rem;
 	box-shadow: none;
 	border: none;
-	border-radius: var(--space-min);
+	border-radius: var(--space-25);
 	filter: brightness(1);
 	-webkit-transition: all 0.2s ease-out;
 	-moz-transition: all 0.2s ease-out;
@@ -511,7 +517,7 @@ input[type="reset"]:hover,
 input[type="button"]:hover,
 button:hover,
 .button:hover {
-	filter: brightness(1.375);
+	filter: brightness(1.25);
 }
 
 input[type="submit"]:focus,
@@ -520,7 +526,7 @@ input[type="button"]:focus,
 button:focus,
 .button:focus {
     outline: 0;
-    filter: brightness(1.5);
+    filter: brightness(0.75);
 }
 
 .button img {
