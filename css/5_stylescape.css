@@ -95,6 +95,8 @@
 	--space-200 : calc(var(--space-100)*2);
 	--space-225 : calc(var(--space-100)*2.25);
 	--space-250 : calc(var(--space-100)*2.5);
+
+	--container-margin	: calc((100vw - var(--container-width))/2);
 	}
 
 	/*@media( min-width: 360px )  {
@@ -495,11 +497,11 @@ input[type="reset"],
 input[type="button"],
 button,
 .button {
-	height: var(--space-200);
+	height: var(--space-175);
 	padding: 0 var(--space-75);
 	font-size: var(--p);
 	font-weight: 400;
-	line-height: var(--space-200);
+	line-height: var(--space-175);
 /*	color: var(--dark);*/
 /*	background-color: var(--neutral-1);*/
 	letter-spacing: .05rem;
