@@ -32,7 +32,8 @@
 
 :root {
 	--white: #FFFFFF;
-	--light: #F2F3EB;
+/*	--light: #F2F3EB;*/
+	--light: #F0FAFF;
 	--neutral-1: #E1DFE3;
 	--neutral-2: #C6C4C8;
 	--neutral-3: #ABA9AD;
@@ -500,7 +501,6 @@ button,
 	height: var(--space-175);
 	padding: 0 var(--space-75);
 	font-size: var(--p);
-	font-weight: 400;
 	line-height: var(--space-175);
 /*	color: var(--dark);*/
 /*	background-color: var(--neutral-1);*/

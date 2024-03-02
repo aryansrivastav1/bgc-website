@@ -1,0 +1,115 @@
+/*
+ * Catalogue Page
+ */
+
+
+.catalogue {
+	position: relative;
+	z-index: 5;
+	padding: var(--space-100);
+	overflow: auto;
+}
+
+.catalogue .cart {
+	position: fixed;
+	left: var(--space-100);
+	bottom: var(--space-100);
+/*	width: calc(var(--card) - var(--space-200));*/
+	width: calc(100% - var(--space-200));
+	height: calc(var(--space-200)*2);
+	border-radius: var(--space-50);
+	border: solid 2px var(--orange-light);
+	overflow: hidden;
+}
+
+.catalogue .cart .total { line-height: 0.825; }
+.catalogue .cart .items { margin-top: var(--space-50); }
+.catalogue .cart .units { margin-top: var(--space-min); }
+
+.catalogue .cart .action {
+	position: absolute;
+	right: var(--space-50);
+	bottom: var(--space-50);
+}
+
+.catalogue .download {
+	position: fixed;
+	right: var(--space-100);
+	bottom: calc(var(--space-100)*5.5);
+/*	width: calc(var(--card) - var(--space-200));*/
+	width: calc(100% - var(--space-200));
+	border-radius: var(--space-50);
+	border: solid 2px var(--orange-light-light);
+	min-height: calc(var(--space-100)*3);;
+}
+
+.catalogue .download .minimise {
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	display: inline-block;
+	width: var(--space-150);
+	height: var(--space-150);
+	border-radius: var(--space-150);
+	background-color: red;
+
+}
+
+.catalogue .download .download-toggle:checked + .minimise {
+	background: pink;
+}
+.catalogue .download .download-toggle + .minimise + .action {
+	max-height: var(--card);
+	transition: .3s ease-out;
+}
+.catalogue .download .download-toggle:checked + .minimise + .action {
+	max-height: 0;
+	overflow: hidden;
+}
+
+
+/*@media( min-width: 640px )  {*/
+@media( min-width: 400px )  {
+
+	.catalogue .cart {
+		width: calc(60% - var(--space-100));
+	}
+	.catalogue .download {
+		bottom: var(--space-100);
+		width: calc(40% - var(--space-150));
+	}
+}
+/*@media( min-width: 1040px ) {*/
+@media( min-width: 800px ) {
+	.catalogue .cart {
+		height: calc(var(--space-100)*3);
+		width: calc(70% - var(--space-100));
+	}
+	.catalogue .cart .total { 
+		position: absolute;
+		left: var(--space-75);
+		top: var(--space-75);
+		font-size: var(--h3);
+		line-height: 1;
+	}
+	.catalogue .cart .items { margin-top: var(--space-25); }
+	.catalogue .cart .items,
+	.catalogue .cart .units {
+		text-align: right;
+		margin-right: 125px;
+	}
+
+	.catalogue .download {
+		bottom: var(--space-100);
+		width: calc(30% - var(--space-150));
+	}
+}
+@media( min-width: 1200px ) {
+	.catalogue .cart .items,
+		.catalogue .cart .units {
+			margin-right: 140px;
+			line-height: 1.25;
+		}
+}
+
