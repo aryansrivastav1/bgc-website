@@ -1,0 +1,25 @@
+{% include 'parts/header.liquid' %}
+		
+
+		<header>
+			<h1>{{ title | default: 'EaseGlobal' }}</h1>
+			<h2>POSTS: Blog Listing</h2>
+		</header>
+		<main>
+			{{ content }}
+		</main>
+
+		<!-- Sample Section -->
+		<section class="sample-section">
+			<div class="container">
+				<div class="row">
+					<div class="columns small-12">
+						<div class="h3 space-50-top space-min-bottom">Here is a sample.</div>
+						<div class="h4">Kontent</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END: Sample Section -->
+
+{% include 'parts/footer.liquid' %}

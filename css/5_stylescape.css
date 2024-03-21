@@ -838,7 +838,7 @@ select {
 	z-index: 1;
 }
 
-.carousel:before,
+/*.carousel:before,
 .carousel:after {
 	pointer-events: none;
 	content: '';
@@ -848,7 +848,7 @@ select {
 	top: 0;
 	bottom: 0;
 	width: calc((100vw - var(--container-width) ) / 2);
-}
+}*/
 
 .carousel .carousel-list {
 	position: relative;
@@ -863,7 +863,7 @@ select {
 	scroll-snap-type: x mandatory;
 }
 
-.carousel:before {
+/*.carousel:before {
 	left: 0;
 	background-image: linear-gradient( to left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 90%);
 	opacity: 0.5;
@@ -883,14 +883,15 @@ select {
 .carousel.fill-dark:after {
 	right: 0;
 	background-image: linear-gradient( to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 90%);
-}
+}*/
 
 .carousel .carousel-list .carousel-list-item {
 	display: inline-block;
 	vertical-align: top;
 	position: relative;
 	white-space: normal;
-	width: calc( 4 * var(--space-100) );
+/*	width: calc( 4 * var(--space-100) );*/
+	width: auto;
 	scroll-snap-align: center;
 }
 

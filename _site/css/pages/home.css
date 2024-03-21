@@ -191,10 +191,6 @@
 	filter: blur(var(--space-25));
 }
 
-
-
-
-
 .catalogue-section .catalogue-box .catalogue-frame {
 	margin: 0;
 	position: relative;
@@ -205,27 +201,8 @@
 	line-height: 0;
 	border-radius: var(--space-50);
 	overflow: hidden;
+	box-shadow: 0 0 0 2px rgba(89, 191, 250, 1);
 }
-
-
-
-/*.catalogue-section .catalogue-box .catalogue {
-	position: relative;
-	z-index: 5;
-	height: calc(var(--card)*2);
-	border-radius: var(--space-50);
-	padding: var(--space-100);
-	overflow: auto;
-	box-shadow: 0 0 0 1px rgba(89, 191, 250, 1), 0 0 var(--space-75) var(--space-25) rgba(89, 191, 250, 0.333);
-}*/
-
-/*.catalogue-section .catalogue-box .catalogue .download {
-	position: absolute;
-	right: var(--space-100);
-	bottom: var(--space-100);
-	width: var(--card);
-	border-radius: var(--space-25);
-}*/
 
 @media( min-width: 640px )  {}
 @media( min-width: 1040px ) {}

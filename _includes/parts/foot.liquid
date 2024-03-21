@@ -1,0 +1,209 @@
+
+
+	</div><!-- END: Page Content -->
+
+</div><!-- END: Page Wrapper -->
+
+<!-- ⬇ All Modals below this point ⬇ -->
+
+<div id="modal-wrapper"><!-- Modal Wrapper -->
+	<div class="modal-box js_modal_box">
+		<!-- Modal Content : Sample Video -->
+		<div class="modal-box-content js_modal_box_content" data-mod-id="sample-video">
+			<div class="container">
+				<div class="row">
+					<div class="columns small-12">
+						<!-- video embed -->
+						<div class="video-embed js_video_embed" data-src="lncVHzsc_QA">
+							<div class="video-loading-indicator"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- END : Sample Video -->
+
+		<!-- Modal Content : Sample Form -->
+		<div class="hidden modal-box-content js_modal_box_content" data-mod-id="sample-form">
+			<div class="container">
+				<div class="row">
+					<div class="columns small-12">
+						<h2>Form Title Goes Here</h2>
+					</div>
+				</div>
+				<div class="row">
+					<!-- video embed -->
+					<div class="columns small-12">
+						<div class="video-embed js_video_embed" data-src="lncVHzsc_QA">
+							<div class="video-loading-indicator"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="columns small-12">
+						<!-- <p>Sample text</p> -->
+					</div>
+				</div>
+			</div>
+		</div><!-- END : Sample Form -->
+
+
+		<!-- Modal Close Button -->
+		<div class="modal-close js_modal_close">&times;</div>
+	</div>
+
+</div><!-- END : Modal Wrapper -->
+
+<!--  ☠  MARKUP ENDS HERE  ☠  -->
+
+<script type="text/javascript" src="/js/video_embed.js"></script>
+
+
+
+<script type="text/javascript">
+	/* -- Smooth Scolling -- */
+	// document.addEventListener("DOMContentLoaded", makeLinksSmooth);
+	// function makeLinksSmooth() { 
+	// 	const navLinks = document.querySelectorAll("a.js_smooth"); 
+
+	// 	navLinks.forEach((link) => {
+	// 		link.addEventListener("click", smoothScroll);
+	// 	});
+	// }
+	// function smoothScroll(e) {
+	// 	e.preventDefault();
+	// 	const targetId = this.getAttribute("href");
+	// 	const targetElement = document.querySelector(targetId);
+
+	// 	if (targetElement) { 
+	// 		// targetElement.scrollIntoView({ behavior: "smooth", block: "end" }); 
+	// 		Jump(targetElement);
+	// 	}
+	// }
+
+	document.addEventListener("DOMContentLoaded", menuToggle);
+	function menuToggle(){
+		const navLinks = document.querySelectorAll(".js_menu"); 
+
+		navLinks.forEach((link) => {
+			link.addEventListener("click", function() {
+				var nextAnchor = link.nextElementSibling;
+				            
+				// Check if the next sibling is an anchor and trigger click
+				if (nextAnchor && nextAnchor.tagName === 'A') {
+					nextAnchor.click();
+				}
+			});
+		});
+	}
+
+
+	// function menuTrigger(trig){
+	// 	console.log("menu trigger");
+	// 	const nextElement = trig.nextElementSibling;
+	// 	console.log(nextElement);
+	// 	nextElement.click();
+	// }
+</script>
+
+
+<script>
+	/* Form 1 */
+	document.addEventListener("DOMContentLoaded", function() {
+	    var form = document.getElementById("homeGeneralLeads");
+	    form.addEventListener("submit", function(event) {
+	        event.preventDefault(); // Prevent default form submission
+	        
+	        // Collect form data
+	        var formData = new FormData(form);
+	        
+	        // Convert formData to URL encoded string
+	        var urlEncodedData = new URLSearchParams(formData).toString();
+	        
+	        // Define endpoint URL
+	        var endpoint = "https://docs.google.com/forms/d/e/1FAIpQLSeG6nfZX6S_nq29su85Olfx_5UT31lj8Mj50WJIwbrVa1wPTw/formResponse";
+	        
+	        // Fetch API POST request
+	        fetch(endpoint, {
+	            method: "POST",
+	            mode: "cors",
+	            credentials: "include",
+	            headers: {
+	                "Content-Type": "application/x-www-form-urlencoded"
+	            },
+	            body: urlEncodedData
+	        })
+	        .then(response => {
+	            if (!response.success) {
+	                throw new Error("Network response was Unsuccessful");
+	            }
+	            return response.text();
+	        })
+	        .then(data => {
+	            // Handle success response
+	            console.log("success:", data);
+	            // You can handle the success response here
+	            // For example, display a success message to the user
+	        })
+	        .catch(error => {
+	            // Handle error
+	            console.error("error:", error);
+	            // Handle the error response here
+	            // For example, display an error message to the user
+	        });
+	        form.classList.add("thank-you");
+	    });
+	});
+</script>
+
+<script>
+	/* Form 2 */
+	document.addEventListener("DOMContentLoaded", function() {
+	    var form = document.getElementById("egBusinessLeads");
+	    form.addEventListener("submit", function(event) {
+	        event.preventDefault(); // Prevent default form submission
+	        
+	        // Collect form data
+	        var formData = new FormData(form);
+	        
+	        // Convert formData to URL encoded string
+	        var urlEncodedData = new URLSearchParams(formData).toString();
+	        
+	        // Define endpoint URL
+	        var endpoint = "https://docs.google.com/forms/d/e/1FAIpQLSdxc5ViZcLMRLSXbny8rBTPVU4RrrN6xS1gxdWfAhhMw5KWew/formResponse";
+	        
+	        // Fetch API POST request
+	        fetch(endpoint, {
+	            method: "POST",
+	            mode: "cors",
+	            credentials: "include",
+	            headers: {
+	                "Content-Type": "application/x-www-form-urlencoded"
+	            },
+	            body: urlEncodedData
+	        })
+	        .then(response => {
+	            if (!response.success) {
+	                throw new Error("Network response was Unsuccessful");
+	            }
+	            return response.text();
+	        })
+	        .then(data => {
+	            // Handle success response
+	            console.log("success:", data);
+	            // You can handle the success response here
+	            // For example, display a success message to the user
+	        })
+	        .catch(error => {
+	            // Handle error
+	            console.error("error:", error);
+	            // Handle the error response here
+	            // For example, display an error message to the user
+	        });
+	        form.classList.add("thank-you");
+	    });
+	});
+</script>
+
+</body>
+
+</html>
