@@ -54,8 +54,26 @@
 			</div>
 		</div>
 		<div class="listing">
+
 			<ul>
 				<li class="category-list carousel">
+					<ul class="carousel-list">
+						{% for variations in products.variations %}
+						<li class="item carousel-list-item">
+							<div class="card">
+								<!-- <div class="thumbnail"></div> -->
+								<!-- <div class="small">{{ #variations.image }}</div> -->
+								<div class="title p">{{ variations.variation_name }}</div>
+								<div class="spec">{{ variations.brand }}</div>
+								<div class="spec">{{ variations.category }}</div>
+								{% for attributes in variations.attributes %}
+									<div class="spec">{{ attributes.attr_name }} : {{ attributes.attr_value }}</div>
+								{% endfor %}
+								<div class="price">&#8377;.{{ variations.price }}/-</div>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
 					<ul class="carousel-list">
 						<li class="item carousel-list-item">
 							<div class="card">
