@@ -5,329 +5,249 @@
 	<!-- Catalogue -->		
 	<div class="catalogue fill-light">
 		<div class="controls row">
+			<!-- Header section -->
 			<div class="header space-100-top space-100-left-right">
-				<div class="mascot inline-middle"><img src="media/clippy.png" alt=""></div>
+				<div class="mascot inline-middle"><img src="media/clippy.png" alt="BGC Logo"></div>
 				<div class="message inline-middle">
-					<div class="h5 strong text-blue">Welcome to our Smart Catalogue!</div>
+					<div class="h5 strong text-blue">Welcome to Our Smart Catalogue!</div>
 				</div>
 			</div>
-			<div class="filter space-50-top space-100-bottom space-100-left-right">
-				<div class="heading p space-25 text-blue-light">Choose your categories:</div>
+
+			<!-- Category section -->
+			<div class="filter space-50-top space-100-left-right">
+				<div class="heading p space-25 text-blue-light">Choose Category:</div>
+				<ul class="filter-tabs space-min">
+					{% for category in category.data.category %}
+						{% if category.name != 'Price\n(Instit. Price)' and category.name != 'ITACC' and category.name != 'HOTUNF' and category.name != 'JOB WORK' %}
+							<li>
+								<label class="pill inline">
+									<input type="radio" name="category" class="hidden category-radio" data-category="{{ category.name }}">
+									<span class="title p inline cursor-pointer category-title">{{ category.name }}</span>
+								</label>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+
+			<!-- Sub-category section -->
+			<div class="filter space-50-top space-100-left-right">
+				<div class="heading p space-25 text-blue-light" id="sub-category-heading" style="display: none;">Choose Sub-category:</div>
+				<ul class="filter-tabs space-min" id="sub-category-list">
+					{% for tags in tags.data %}
+						<li class="subcategory-item" data-category="{{ tags.category }}" style="display: none;">
+							<label class="pill inline">
+								<input type="checkbox" name="subCategory" class="hidden sub-category-checkbox" data-tag="{{ tags.tag }}">
+								<span class="title p inline cursor-pointer subcategory-title">{{ tags.tag }}</span>
+							</label>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<!-- Sorting section -->
+			<div class="filter space-50-top space-100-left-right" id="sorting-section" style="display: none;">
+				<div class="heading p space-25 text-blue-light">Sort By:</div>
 				<ul class="filter-tabs space-min">
 					<li>
 						<label class="pill inline">
-							<input type="checkbox" name="" class="hidden">
-							<span class="title p inline cursor-pointer">Plates</span>
+							<input type="radio" name="sort" class="hidden">
+							<span class="title p inline cursor-pointer" onclick="sortProducts('name-asc')">Sort by Name (A-Z)</span>
 						</label>
 					</li>
 					<li>
 						<label class="pill inline">
-							<input type="checkbox" name="" class="hidden">
-							<span class="title p inline cursor-pointer">Cups</span>
+							<input type="radio" name="sort" class="hidden">
+							<span class="title p inline cursor-pointer" onclick="sortProducts('name-desc')">Sort by Name (Z-A)</span>
 						</label>
 					</li>
 					<li>
 						<label class="pill inline">
-							<input type="checkbox" name="" class="hidden">
-							<span class="title p inline cursor-pointer">Spoons</span>
+							<input type="radio" name="sort" class="hidden">
+							<span class="title p inline cursor-pointer" onclick="sortProducts('price-asc')">Sort by Price (Low to High)</span>
 						</label>
 					</li>
 					<li>
 						<label class="pill inline">
-							<input type="checkbox" name="" class="hidden">
-							<span class="title p inline cursor-pointer">Forks</span>
-						</label>
-					</li>
-					<li>
-						<label class="pill inline">
-							<input type="checkbox" name="" class="hidden">
-							<span class="title p inline cursor-pointer">Pots</span>
-						</label>
-					</li>
-					<li>
-						<label class="pill inline">
-							<input type="checkbox" name="" class="hidden">
-							<span class="title p inline cursor-pointer">Pans</span>
+							<input type="radio" name="sort" class="hidden">
+							<span class="title p inline cursor-pointer" onclick="sortProducts('price-desc')">Sort by Price (High to Low)</span>
 						</label>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="listing">
 
+		<!-- Product section -->
+		<div class="listing">
 			<ul>
 				<li class="category-list carousel">
 					<ul class="carousel-list">
 						{% for variations in products.variations %}
-						<li class="item carousel-list-item">
-							<div class="card">
-								<!-- <div class="thumbnail"></div> -->
-								<!-- <div class="small">{{ #variations.image }}</div> -->
-								<div class="title p">{{ variations.variation_name }}</div>
-								<div class="spec">{{ variations.brand }}</div>
-								<div class="spec">{{ variations.category }}</div>
-								{% for attributes in variations.attributes %}
-									<div class="spec">{{ attributes.attr_name }} : {{ attributes.attr_value }}</div>
-								{% endfor %}
-								<div class="price">&#8377;.{{ variations.price }}/-</div>
-							</div>
-						</li>
+							<li class="item carousel-list-item" data-variation-name="{{ variations.variation_name }}" style="display: none;">
+								<div class="card lazy-load">
+									<div class="thumbnail" data-src="https://bgc.sixorbit.com{{ variations.image }}" style="background: url('https://placehold.co/150x100');"></div>
+									<div class="title p">{{ variations.variation_name }}</div>
+									<div class="spec">Brand: {{ variations.brand }}</div>
+									<div class="spec">Category: {{ variations.category }}</div>
+									{% for attributes in variations.attributes %}
+										{% if attributes.attr_name != '' and attributes.attr_value != '' %}
+											<div class="spec">{{ attributes.attr_name }} : {{ attributes.attr_value }}</div>
+										{% endif %}
+									{% endfor %}
+									<div class="price">&#8377; {{ variations.price | floor }}</div>
+								</div>
+							</li>
 						{% endfor %}
-					</ul>
-					<ul class="carousel-list">
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 1</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 2</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 3</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 4</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 5</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 6</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 7</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 8</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 9</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Cup 10</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-					</ul>
-				</li>
-				<li class="category-list carousel">
-					<ul class="carousel-list">
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 1</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 2</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 3</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 4</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 5</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 6</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 7</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 8</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 9</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Fork 10</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-					</ul>
-				</li>
-				<li class="category-list carousel">
-					<ul class="carousel-list">
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 1</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 2</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 3</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 4</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 5</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 6</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 7</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 8</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 9</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
-						<li class="item carousel-list-item">
-							<div class="card">
-								<div class="thumbnail"></div>
-								<div class="title p">Pan 10</div>
-								<div class="spec">16 inches</div>
-								<div class="price">&#8377;.24.50/-</div>
-							</div>
-						</li>
 					</ul>
 				</li>
 			</ul>
 		</div>
-		<div class="cart row fill-white space-50">
+
+		<script>
+			// Add event listener for category radio buttons
+			document.querySelectorAll('.category-radio').forEach(categoryRadio => {
+				categoryRadio.addEventListener('change', function () {
+					const selectedCategory = this.getAttribute('data-category');
+
+					// Hide all sub-categories
+					document.querySelectorAll('.subcategory-item').forEach(subCategory => {
+						subCategory.style.display = 'none';
+					});
+
+					// Show only the sub-categories for the selected category
+					const matchingSubCategories = document.querySelectorAll(`.subcategory-item[data-category="${selectedCategory}"]`);
+					matchingSubCategories.forEach(subCategory => {
+						subCategory.style.display = 'inline-block';
+					});
+
+					// Show the sub-category heading
+					if (matchingSubCategories.length > 0) {
+						document.getElementById('sub-category-heading').style.display = 'block'; // Show the sub-category heading
+					} else {
+						document.getElementById('sub-category-heading').style.display = 'none'; // Hide if no sub-categories found
+					}
+
+					// Reset the selected sub-category checkboxes
+					document.querySelectorAll('.sub-category-checkbox').forEach(checkbox => {
+						checkbox.checked = false; // Uncheck all checkboxes
+					});
+
+					// Hide all products
+					document.querySelectorAll('.carousel-list-item').forEach(product => {
+						product.style.display = 'none'; // Hide all products
+					});
+
+					// Reset scroll position of the carousel
+					document.querySelector('.carousel-list').scrollLeft = 0; // Reset to the start
+				});
+			});
+
+			// Add event listener for sub-category checkboxes
+			document.querySelectorAll('.sub-category-checkbox').forEach(subCategoryCheckbox => {
+				subCategoryCheckbox.addEventListener('change', function () {
+					const selectedTags = Array.from(document.querySelectorAll('.sub-category-checkbox:checked')).map(checkbox => checkbox.getAttribute('data-tag'));
+
+					// Hide all products initially
+					document.querySelectorAll('.carousel-list-item').forEach(product => {
+						product.style.display = 'none'; // Hide all products
+					});
+
+					// Show only the products that match the selected tags
+					if (selectedTags.length > 0) {
+						selectedTags.forEach(tag => {
+							document.querySelectorAll(`.carousel-list-item[data-variation-name*="${tag}"]`).forEach(product => {
+								product.style.display = 'inline-block'; // Show matching products
+							});
+						});
+
+						// Show the sorting section when at least one sub-category is selected
+						document.getElementById('sorting-section').style.display = 'block';
+					} else {
+						// If no tags are selected, show all products for the selected category
+						const selectedCategory = document.querySelector('.category-radio:checked')?.getAttribute('data-category');
+						document.querySelectorAll(`.carousel-list-item[data-category="${selectedCategory}"]`).forEach(product => {
+							product.style.display = 'inline-block'; // Show matching products
+						});
+
+						// Hide the sorting section if no sub-category is selected
+						document.getElementById('sorting-section').style.display = 'none';
+					}
+
+					// Reset scroll position of the carousel when sub-category changes
+					document.querySelector('.carousel-list').scrollLeft = 0; // Reset to the start
+				});
+			});
+
+			// Product Sorting
+			function sortProducts(type) {
+				const productLists = document.querySelectorAll(".carousel-list");
+
+				productLists.forEach((productList) => {
+					const products = Array.from(productList.getElementsByClassName("item"));
+
+					// Function to extract relevant data from the product
+					function getProductData(product) {
+						const name = product.querySelector(".title").textContent.trim();
+						const price = parseInt(product.querySelector(".price").textContent.replace(/[^\d]/g, ""), 10); // Removes '₹' and '/-'
+						return { name, price };
+					}
+
+					products.sort((a, b) => {
+						const productA = getProductData(a);
+						const productB = getProductData(b);
+
+						if (type === 'name-asc') {
+							return productA.name.localeCompare(productB.name);
+						} else if (type === 'name-desc') {
+							return productB.name.localeCompare(productA.name);
+						} else if (type === 'price-asc') {
+							return productA.price - productB.price;
+						} else if (type === 'price-desc') {
+							return productB.price - productA.price;
+						}
+					});
+
+					// Clear existing products and append sorted products
+					productList.innerHTML = '';
+					products.forEach(product => productList.appendChild(product));
+
+					// Scroll back to the starting point after sorting
+					productList.scrollTo(0, 0);
+				});
+			}
+
+			// Default sorting by name in ascending order for all lists
+			document.addEventListener("DOMContentLoaded", function() {
+				sortProducts('name-asc');
+			});
+
+			// Lazy Loading
+			document.addEventListener('DOMContentLoaded', () => {
+				const lazyCards = document.querySelectorAll('.lazy-load');
+
+				// IntersectionObserver for lazy loading cards
+				const cardObserver = new IntersectionObserver((entries, observer) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible'); // Show card
+							const img = entry.target.querySelector('.thumbnail');
+							if (img && img.dataset.src) {
+								img.style.backgroundImage = `url(${img.dataset.src})`; // Load the image
+							}
+							observer.unobserve(entry.target); // Stop observing once loaded
+						}
+					});
+				});
+
+				// Observe each product card
+				lazyCards.forEach(card => {
+					cardObserver.observe(card); // Observe each card for lazy loading
+				});
+			});
+		</script>
+
+
+		{% comment %} <div class="cart row fill-white space-50">
 			<div class="total h4 strong font-h">Total: ₹ 4,82,529/-</div>
 			<div class="items p strong font-h text-neutral-5">Total Items: 20</div>
 			<div class="units p strong font-h text-neutral-5">Total Units: 500</div>
@@ -341,40 +261,9 @@
 				<div class="p space-25-top space-150-bottom">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
 				<a href="https://google.com" target="_blank" class="button fill-white text-orange">Download Now</a>
 			</div>
-		</div>
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
-		<!-- <div class="p">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt quaerat officiis dolorum dolore, voluptates accusantium quisquam suscipit libero repudiandae ea, error ex enim beatae, temporibus velit, id est commodi! Quidem!</div> -->
+		</div> {% endcomment %}
+
+
 	</div>
 	<!-- End: Catalogue -->
 

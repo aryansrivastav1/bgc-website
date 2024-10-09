@@ -63,14 +63,14 @@
 
 
 .catalogue .listing {
-	border-top: 1px solid var(--blue-light-light);
+	/* border-top: 1px solid var(--blue-light-light); */
 	border-bottom: 1px solid var(--blue-light-light);
 	padding-bottom: calc(var(--space-100) * 5);
 }
 
 .catalogue .listing .category-list {
-	border-top: 1px solid var(--blue-light-light);
-	border-bottom: 1px solid var(--blue-light-light);
+	/* border-top: 1px solid var(--blue-light-light); */
+	/* border-bottom: 1px solid var(--blue-light-light); */
 }
 
 .catalogue .listing ul {
