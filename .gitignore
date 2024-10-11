@@ -1,4 +1,5 @@
 
+.vscode
 node_modules/wordwrap/.DS_Store
 node_modules/with/.DS_Store
 node_modules/uglify-js/.DS_Store
