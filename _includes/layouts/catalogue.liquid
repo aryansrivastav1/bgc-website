@@ -2,270 +2,287 @@
 
 
 
-	<!-- Catalogue -->		
-	<div class="catalogue fill-light">
-		<div class="controls row">
-			<!-- Header section -->
-			<div class="header space-100-top space-100-left-right">
-				<div class="mascot inline-middle"><img src="media/clippy.png" alt="BGC Logo"></div>
-				<div class="message inline-middle">
-					<div class="h5 strong text-blue">Welcome to Our Smart Catalogue!</div>
-				</div>
-			</div>
-
-			<!-- Category section -->
-			<div class="filter space-50-top space-100-left-right">
-				<div class="heading p space-25 text-blue-light">Choose Category:</div>
-				<ul class="filter-tabs space-min">
-					{% for category in category.data.category %}
-						{% if category.name != 'Price\n(Instit. Price)' and category.name != 'ITACC' and category.name != 'HOTUNF' and category.name != 'JOB WORK' %}
-							<li>
-								<label class="pill inline">
-									<input type="radio" name="category" class="hidden category-radio" data-category="{{ category.name }}">
-									<span class="title p inline cursor-pointer category-title">{{ category.name }}<small>({{category.description | default: 'N/A'}})</small></span>
-								</label>
-							</li>
-						{% endif %}
-					{% endfor %}
-				</ul>
-			</div>
-
-			<!-- Sub-category section -->
-			<div class="filter space-50-top space-100-left-right">
-				<div class="heading p space-25 text-blue-light" id="sub-category-heading" style="display: none;">Choose Sub-category:</div>
-				<ul class="filter-tabs space-min" id="sub-category-list">
-					{% for tags in tags.data %}
-						<li class="subcategory-item" data-category="{{ tags.category }}" style="display: none;">
-							<label class="pill inline">
-								<input type="checkbox" name="subCategory" class="hidden sub-category-checkbox" data-tag="{{ tags.tag }}">
-								<span class="title p inline cursor-pointer subcategory-title">{{ tags.tag }}</span>
-							</label>
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
-
-			<!-- Sorting section -->
-			<div class="filter space-50-top space-100-left-right" id="sorting-section" style="display: none;">
-				<div class="heading p space-25 text-blue-light">Sort By:</div>
-				<ul class="filter-tabs space-min">
-					<li>
-						<label class="pill inline">
-							<input type="radio" name="sort" class="hidden">
-							<span class="title p inline cursor-pointer" onclick="sortProducts('name-asc')">Sort by Name (A-Z)</span>
-						</label>
-					</li>
-					<li>
-						<label class="pill inline">
-							<input type="radio" name="sort" class="hidden">
-							<span class="title p inline cursor-pointer" onclick="sortProducts('name-desc')">Sort by Name (Z-A)</span>
-						</label>
-					</li>
-					<li>
-						<label class="pill inline">
-							<input type="radio" name="sort" class="hidden">
-							<span class="title p inline cursor-pointer" onclick="sortProducts('price-asc')">Sort by Price (Low to High)</span>
-						</label>
-					</li>
-					<li>
-						<label class="pill inline">
-							<input type="radio" name="sort" class="hidden">
-							<span class="title p inline cursor-pointer" onclick="sortProducts('price-desc')">Sort by Price (High to Low)</span>
-						</label>
-					</li>
-				</ul>
+<!-- Catalogue -->
+<div class="catalogue fill-light">
+	<div class="controls row">
+		<!-- Header section -->
+		<div class="header space-100-top space-100-left-right">
+			<div class="mascot inline-middle"><img src="media/clippy.png" alt="BGC Logo"></div>
+			<div class="message inline-middle">
+				<div class="h5 strong text-blue">Welcome to Our Smart Catalogue!</div>
 			</div>
 		</div>
 
-		<!-- Product section -->
-		<div class="listing">
-			<ul>
-				<li class="category-list carousel">
-					<ul class="carousel-list">
-						{% for variations in products.variations %}
-							<li class="item carousel-list-item" data-variation-name="{{ variations.variation_name }}" style="display: none;">
-								<div class="card lazy-load">
-									<div class="thumbnail" data-src="https://bgc.sixorbit.com{{ variations.image }}" style="background: url('https://placehold.co/150x100');"></div>
-									<div class="title p">{{ variations.variation_name }}</div>
-									<div class="spec">Brand: {{ variations.brand }}</div>
-									<div class="spec">Category: {{ variations.category }}</div>
-									{% for attributes in variations.attributes %}
-										{% if attributes.attr_name != '' and attributes.attr_value != '' %}
-											<div class="spec">{{ attributes.attr_name }} : {{ attributes.attr_value }}</div>
-										{% endif %}
-									{% endfor %}
-									<div class="price">&#8377; {{ variations.price | floor }}</div>
-								</div>
-							</li>
-						{% endfor %}
-					</ul>
-				</li>
+		<!-- Category section -->
+		<div class="filter space-50-top space-100-left-right">
+			<div class="heading p space-25 text-blue-light">Choose Category:</div>
+			<ul class="filter-tabs space-min">
+				{% for category in category.data.category %}
+					{% if category.name != 'Price\n(Instit. Price)' and category.name != 'ITACC' and category.name != 'HOTUNF' and category.name != 'JOB WORK' %}
+						<li>
+							<label class="pill inline">
+								<input type="radio" name="category" class="hidden category-radio"
+									data-category="{{ category.name }}">
+								<span class="title p inline cursor-pointer category-title">{{ category.name }}</span>
+							</label>
+						</li>
+					{% endif %}
+				{% endfor %}
 			</ul>
 		</div>
 
-		<script>
-			// Add event listener for category radio buttons
-			document.querySelectorAll('.category-radio').forEach(categoryRadio => {
-				categoryRadio.addEventListener('change', function () {
-					const selectedCategory = this.getAttribute('data-category');
+		<!-- Sub-category section -->
+		<div class="filter space-50-top space-100-left-right">
+			<div class="heading p space-25 text-blue-light" id="sub-category-heading" style="display: none;">Choose
+				Sub-category:</div>
+			<ul class="filter-tabs space-min" id="sub-category-list">
+				{% for tags in tags.data %}
+				<li class="subcategory-item" data-category="{{ tags.category }}" style="display: none;">
+					<label class="pill inline">
+						<input type="checkbox" name="subCategory" class="hidden sub-category-checkbox"
+							data-tag="{{ tags.tag }}">
+						<span class="title p inline cursor-pointer subcategory-title">{{ tags.tag }}</span>
+					</label>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
 
-					// Hide all sub-categories
-					document.querySelectorAll('.subcategory-item').forEach(subCategory => {
-						subCategory.style.display = 'none';
-					});
+		<!-- Sorting section -->
+		<div class="filter space-50-top space-100-left-right" id="sorting-section" style="display: none;">
+			<div class="heading p space-25 text-blue-light">Sort By:</div>
+			<ul class="filter-tabs space-min">
+				<li>
+					<label class="pill inline">
+						<input type="radio" name="sort" class="hidden">
+						<span class="title p inline cursor-pointer" onclick="sortProducts('name-asc')">Sort by Name
+							(A-Z)</span>
+					</label>
+				</li>
+				<li>
+					<label class="pill inline">
+						<input type="radio" name="sort" class="hidden">
+						<span class="title p inline cursor-pointer" onclick="sortProducts('name-desc')">Sort by Name
+							(Z-A)</span>
+					</label>
+				</li>
+				<li>
+					<label class="pill inline">
+						<input type="radio" name="sort" class="hidden">
+						<span class="title p inline cursor-pointer" onclick="sortProducts('price-asc')">Sort by Price
+							(Low to High)</span>
+					</label>
+				</li>
+				<li>
+					<label class="pill inline">
+						<input type="radio" name="sort" class="hidden">
+						<span class="title p inline cursor-pointer" onclick="sortProducts('price-desc')">Sort by Price
+							(High to Low)</span>
+					</label>
+				</li>
+			</ul>
+		</div>
+	</div>
 
-					// Show only the sub-categories for the selected category
-					const matchingSubCategories = document.querySelectorAll(`.subcategory-item[data-category="${selectedCategory}"]`);
-					matchingSubCategories.forEach(subCategory => {
-						subCategory.style.display = 'inline-block';
-					});
+	<!-- Product section -->
+	<div class="listing">
+		<ul id="main-product-list">
+			<li class="category-list carousel">
+				<ul class="carousel-list">
+					{% for variations in products.variations %}
+						<li class="item carousel-list-item" data-variation-name="{{ variations.variation_name }}" style="display: none;">
+							<div class="card lazy-load">
+								<div class="thumbnail" data-src="https://bgc.sixorbit.com{{ variations.image }}" style="background: url('https://placehold.co/150x100');"></div>
+								<div class="title p">{{ variations.variation_name }}</div>
+								<div class="spec">Brand: {{ variations.brand }}</div>
+								<div class="spec">Category: {{ variations.category }}</div>
+								{% for attributes in variations.attributes %}
+									{% if attributes.attr_name != '' and attributes.attr_value != '' %}
+										<div class="spec">{{ attributes.attr_name }} : {{ attributes.attr_value }}</div>
+									{% endif %}
+								{% endfor %}
+								<div class="price">&#8377; {{ variations.price | floor }}</div>
+							</div>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+	</div>
 
-					// Show the sub-category heading
-					if (matchingSubCategories.length > 0) {
-						document.getElementById('sub-category-heading').style.display = 'block'; // Show the sub-category heading
-					} else {
-						document.getElementById('sub-category-heading').style.display = 'none'; // Hide if no sub-categories found
-					}
+	<script>
+		// Add event listener for category radio buttons
+		document.querySelectorAll('.category-radio').forEach(categoryRadio => {
+			categoryRadio.addEventListener('change', function () {
+				const selectedCategory = this.getAttribute('data-category');
 
-					// Reset the selected sub-category checkboxes
-					document.querySelectorAll('.sub-category-checkbox').forEach(checkbox => {
-						checkbox.checked = false; // Uncheck all checkboxes
-					});
-
-					// Hide all products
-					document.querySelectorAll('.carousel-list-item').forEach(product => {
-						product.style.display = 'none'; // Hide all products
-					});
-
-					// Reset scroll position of the carousel
-					document.querySelector('.carousel-list').scrollLeft = 0; // Reset to the start
+				// Hide all sub-categories
+				document.querySelectorAll('.subcategory-item').forEach(subCategory => {
+					subCategory.style.display = 'none';
 				});
+
+				// Show only the sub-categories for the selected category
+				const matchingSubCategories = document.querySelectorAll(`.subcategory-item[data-category="${selectedCategory}"]`);
+				matchingSubCategories.forEach(subCategory => {
+					subCategory.style.display = 'inline-block';
+				});
+
+				// Show the sub-category heading
+				if (matchingSubCategories.length > 0) {
+					document.getElementById('sub-category-heading').style.display = 'block'; // Show the sub-category heading
+				} else {
+					document.getElementById('sub-category-heading').style.display = 'none'; // Hide if no sub-categories found
+				}
+
+				// Reset the selected sub-category checkboxes
+				document.querySelectorAll('.sub-category-checkbox').forEach(checkbox => {
+					checkbox.checked = false; // Uncheck all checkboxes
+				});
+
+				// Hide product lists
+				document.querySelectorAll('.category-list').forEach(categoryList => {
+					categoryList.style.display = 'none'; // Hide product lists
+				});
+
+				// Reset scroll position of the carousel
+				document.querySelector('.carousel-list').scrollLeft = 0; // Reset to the start
 			});
+		});
 
-			// Add event listener for sub-category checkboxes
-			document.querySelectorAll('.sub-category-checkbox').forEach(subCategoryCheckbox => {
-				subCategoryCheckbox.addEventListener('change', function () {
-					const selectedTags = Array.from(document.querySelectorAll('.sub-category-checkbox:checked')).map(checkbox => checkbox.getAttribute('data-tag'));
+		// Add event listener for sub-category checkboxes
+		document.querySelectorAll('.sub-category-checkbox').forEach(subCategoryCheckbox => {
+			subCategoryCheckbox.addEventListener('change', function () {
+				const selectedTags = Array.from(document.querySelectorAll('.sub-category-checkbox:checked')).map(checkbox => checkbox.getAttribute('data-tag'));
+				
+				// Show sorting section if any sub-category is selected
+				const sortingSection = document.getElementById('sorting-section');
+				if (selectedTags.length > 0) {
+					sortingSection.style.display = 'block'; // Show the sorting section
+				} else {
+					sortingSection.style.display = 'none'; // Hide if no sub-category is selected
+				}
 
-					// Hide all products initially
-					document.querySelectorAll('.carousel-list-item').forEach(product => {
-						product.style.display = 'none'; // Hide all products
+				// Existing code for handling sub-category changes
+				if (!this.checked) {
+					// Clear existing product rows for this sub-category
+					document.querySelectorAll(`.category-list.carousel[data-tag="${this.getAttribute('data-tag')}"]`).forEach(row => {
+						row.remove(); // Remove the product row
+					});
+				} else {
+					// Create a new product row for the selected sub-category
+					const newProductRow = document.createElement('li');
+					newProductRow.classList.add('category-list', 'carousel');
+					newProductRow.setAttribute('data-tag', this.getAttribute('data-tag')); // Set the data attribute for the row
+					const newProductList = document.createElement('ul');
+					newProductList.classList.add('carousel-list');
+
+					// Find products matching the currently selected sub-category only
+					const matchingProducts = Array.from(document.querySelectorAll(`.carousel-list-item[data-variation-name*="${this.getAttribute('data-tag')}"]`));
+
+					// Show matching products and add them to the new product list
+					matchingProducts.forEach(product => {
+						const productClone = product.cloneNode(true); // Clone the product
+						productClone.style.display = 'inline-block'; // Ensure the product is visible
+						newProductList.appendChild(productClone); // Add to the new product list
 					});
 
-					// Show only the products that match the selected tags
-					if (selectedTags.length > 0) {
-						selectedTags.forEach(tag => {
-							document.querySelectorAll(`.carousel-list-item[data-variation-name*="${tag}"]`).forEach(product => {
-								product.style.display = 'inline-block'; // Show matching products
-							});
-						});
-
-						// Show the sorting section when at least one sub-category is selected
-						document.getElementById('sorting-section').style.display = 'block';
-					} else {
-						// If no tags are selected, show all products for the selected category
-						const selectedCategory = document.querySelector('.category-radio:checked')?.getAttribute('data-category');
-						document.querySelectorAll(`.carousel-list-item[data-category="${selectedCategory}"]`).forEach(product => {
-							product.style.display = 'inline-block'; // Show matching products
-						});
-
-						// Hide the sorting section if no sub-category is selected
-						document.getElementById('sorting-section').style.display = 'none';
+					// Append the new product list to the new product row if there are products
+					if (newProductList.children.length > 0) { // Only append if there are products
+						newProductRow.appendChild(newProductList);
+						document.getElementById('main-product-list').appendChild(newProductRow); // Append the new row to the main product list
 					}
+				}
 
-					// Reset scroll position of the carousel when sub-category changes
-					document.querySelector('.carousel-list').scrollLeft = 0; // Reset to the start
-				});
+				// Reset scroll position of the carousel when sub-category changes
+				document.querySelector('.carousel-list').scrollLeft = 0; // Reset to the start
 			});
+		});
 
-			// Product Sorting
-			function sortProducts(type) {
-				const productLists = document.querySelectorAll(".carousel-list");
+		// Product Sorting
+		function sortProducts(type) {
+			const productLists = document.querySelectorAll(".carousel-list");
 
-				productLists.forEach((productList) => {
-					const products = Array.from(productList.getElementsByClassName("item"));
+			productLists.forEach((productList) => {
+				const products = Array.from(productList.getElementsByClassName("item"));
 
-					// Function to extract relevant data from the product
-					function getProductData(product) {
-						const name = product.querySelector(".title").textContent.trim();
-						const price = parseInt(product.querySelector(".price").textContent.replace(/[^\d]/g, ""), 10); // Removes '₹' and '/-'
-						return { name, price };
+				// Function to extract relevant data from the product
+				function getProductData(product) {
+					const name = product.querySelector(".title").textContent.trim();
+					const price = parseInt(product.querySelector(".price").textContent.replace(/[^\d]/g, ""), 10); // Removes '₹' and '/-'
+					return { name, price };
+				}
+
+				products.sort((a, b) => {
+					const productA = getProductData(a);
+					const productB = getProductData(b);
+
+					if (type === 'name-asc') {
+						return productA.name.localeCompare(productB.name);
+					} else if (type === 'name-desc') {
+						return productB.name.localeCompare(productA.name);
+					} else if (type === 'price-asc') {
+						return productA.price - productB.price;
+					} else if (type === 'price-desc') {
+						return productB.price - productA.price;
 					}
-
-					products.sort((a, b) => {
-						const productA = getProductData(a);
-						const productB = getProductData(b);
-
-						if (type === 'name-asc') {
-							return productA.name.localeCompare(productB.name);
-						} else if (type === 'name-desc') {
-							return productB.name.localeCompare(productA.name);
-						} else if (type === 'price-asc') {
-							return productA.price - productB.price;
-						} else if (type === 'price-desc') {
-							return productB.price - productA.price;
-						}
-					});
-
-					// Clear existing products and append sorted products
-					productList.innerHTML = '';
-					products.forEach(product => productList.appendChild(product));
-
-					// Scroll back to the starting point after sorting
-					productList.scrollTo(0, 0);
 				});
-			}
 
-			// Default sorting by name in ascending order for all lists
-			document.addEventListener("DOMContentLoaded", function() {
-				sortProducts('name-asc');
+				// Clear existing products and append sorted products
+				productList.innerHTML = '';
+				products.forEach(product => productList.appendChild(product));
+
+				// Scroll back to the starting point after sorting
+				productList.scrollTo(0, 0);
 			});
+		}
+
+		// Default Sorting and Lazy Loading
+		document.addEventListener("DOMContentLoaded", function () {
+			// Default Sorting
+			sortProducts('name-asc');
 
 			// Lazy Loading
-			document.addEventListener('DOMContentLoaded', () => {
-				const lazyCards = document.querySelectorAll('.lazy-load');
+			const lazyCards = document.querySelectorAll('.lazy-load');
 
-				// IntersectionObserver for lazy loading cards
-				const cardObserver = new IntersectionObserver((entries, observer) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add('visible'); // Show card
-							const img = entry.target.querySelector('.thumbnail');
-							if (img && img.dataset.src) {
-								img.style.backgroundImage = `url(${img.dataset.src})`; // Load the image
-							}
-							observer.unobserve(entry.target); // Stop observing once loaded
+			// IntersectionObserver for lazy loading cards
+			const cardObserver = new IntersectionObserver((entries, observer) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible'); // Show card
+						const img = entry.target.querySelector('.thumbnail');
+						if (img && img.dataset.src) {
+							img.style.backgroundImage = `url(${img.dataset.src})`; // Load the image
 						}
-					});
-				});
-
-				// Observe each product card
-				lazyCards.forEach(card => {
-					cardObserver.observe(card); // Observe each card for lazy loading
+						observer.unobserve(entry.target); // Stop observing once loaded
+					}
 				});
 			});
-		</script>
 
+			// Observe each product card
+			lazyCards.forEach(card => {
+				cardObserver.observe(card); // Observe each card for lazy loading
+			});
+		});
+	</script>
 
-		{% comment %} <div class="cart row fill-white space-50">
-			<div class="total h4 strong font-h">Total: ₹ 4,82,529/-</div>
-			<div class="items p strong font-h text-neutral-5">Total Items: 20</div>
-			<div class="units p strong font-h text-neutral-5">Total Units: 500</div>
-			<a href="https://google.com" target="_blank" class="action button fill-orange text-white">Get Offer</a>
-		</div>
-		<div class="download row fill-orange space-75">
-			<input type="checkbox" id="catDownloadMin" class="download-toggle hidden">
-			<label for="catDownloadMin" class="minimise">Minimise</label>
-			<div class="action columns small-9">
-				<div class="h4 font-h strong">Complete Catalogue</div>
-				<div class="p space-25-top space-150-bottom">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-				<a href="https://google.com" target="_blank" class="button fill-white text-orange">Download Now</a>
-			</div>
-		</div> {% endcomment %}
-
-
+	{% comment %} <div class="cart row fill-white space-50">
+		<div class="total h4 strong font-h">Total: ₹ 4,82,529/-</div>
+		<div class="items p strong font-h text-neutral-5">Total Items: 20</div>
+		<div class="units p strong font-h text-neutral-5">Total Units: 500</div>
+		<a href="https://google.com" target="_blank" class="action button fill-orange text-white">Get Offer</a>
 	</div>
-	<!-- End: Catalogue -->
+
+	<div class="download row fill-orange space-75">
+		<input type="checkbox" id="catDownloadMin" class="download-toggle hidden">
+		<label for="catDownloadMin" class="minimise">Minimise</label>
+		<div class="action columns small-9">
+			<div class="h4 font-h strong">Complete Catalogue</div>
+			<div class="p space-25-top space-150-bottom">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+			<a href="https://google.com" target="_blank" class="button fill-white text-orange">Download Now</a>
+		</div>
+	</div> {% endcomment %}
+</div>
+<!-- End: Catalogue -->
 
 
 

@@ -1,35 +1,67 @@
 backend:
+  branch: master
   name: git-gateway
-  branch: main # Branch to update (optional; defaults to main)
-# publish_mode: editorial_workflow
-media_folder: "/media/uploads" # Media files will be stored in the repo under static/images/uploads
-public_folder: "/media/uploads" # The src attribute for uploaded media will begin with /images/uploads
+
+media_folder: "/media/"
+public_folder: "/media/"
+
+local_backend: true
 collections:
-  - name: "services"
-    label: "Services"
-    folder: "services"
+  - name: "categories"
+    label: "Categories"
+    folder: "src/categories/"
+    editor:
+      preview: false
     create: true
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    sortable_fields: ['date', 'title']
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["service"] }
-      - { label: "Heading", name: "heading", widget: "string" }
-      - { label: "Short Description", name: "description", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Content", name: "content", widget: "markdown", required: false}
-  - name: "posts"
-    label: "Posts"
-    folder: "posts"
-    create: true
-    slug: "{{slug}}-{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{second}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    sortable_fields: ['commit_date', 'title']
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["service"] }
-      - { label: "Heading", name: "heading", widget: "string" }
-      - { label: "Description", name: "description", widget: "string" }
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Content", name: "content", widget: "markdown" }
+    files:
+      file: "src/categories/categories.md"
+      fields:
+        - { label: "Category Code", name: "cat_code", widget: "string" }
+        - { label: "Category Name", name: "cat_name", widget: "string" }
+
+        # New field with buttons
+        - label: "Download JSON Files"
+          name: "download_json"
+          widget: "object"
+          fields:
+            - {
+                label: "Button 1 (Download Link)",
+                name: "button1",
+                widget: "string",
+                hint: "Link to the first JSON file",
+              }
+            - {
+                label: "Button 2 (Download Link)",
+                name: "button2",
+                widget: "string",
+                hint: "Link to the second JSON file",
+              }
+
+    # Add an array of static categories here
+  #   static_categories:
+  #     - category_name: "CCG"
+  #     - category_name: "KITAC"
+  #     - category_name: "FBSAC"
+  #     - category_name: "KITEQ"
+  #     - category_name: "KSTAC"
+  #     - category_name: "KTEQP"
+  #     - category_name: "KITUN"
+  #     - category_name: "HKAC"
+  #     - category_name: "GEN"
+  #     - category_name: "SNTZP"
+  #     - category_name: "JOB WORK"
+  #     - category_name: "FBSBQT"
+  #     - category_name: "KITEC"
+  #     - category_name: "FBEQP"
+  #     - category_name: "FBBQT"
+  #     - category_name: "KITCHEN UNIFORM"
+  #     - category_name: "TILES"
+
+  # - name: "variations"
+  #   label: "Variations"
+  #   folder: "src/variations"
+  #   create: true
+  #   fields:
+  #     - { label: "Variation Name", name: "variation_name", widget: "string" }
+  #     - { label: "Price", name: "price", widget: "number" }
+  #     - { label: "Attributes", name: "attributes", widget: "string" }

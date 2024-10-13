@@ -70,7 +70,7 @@
 
 .catalogue .listing .category-list {
 	/* border-top: 1px solid var(--blue-light-light); */
-	/* border-bottom: 1px solid var(--blue-light-light); */
+	border-bottom: 1px solid var(--blue-light-light);
 }
 
 .catalogue .listing ul {
