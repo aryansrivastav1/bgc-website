@@ -1,21 +1,5 @@
 ---
-success: true
-categories:
-  - CCG
-  - KITAC
-  - FBSAC
-  - KITEQ
-  - KSTAC
-  - KTEQP
-  - KITUN
-  - HKAC
-  - GEN
-  - SNTZP
-  - JOB WORK
-  - FBSBQT
-  - KITEC
-  - FBEQP
-  - FBBQT
-  - KITCHEN UNIFORM
-  - TILES
+categories_url: 'http://localhost:3000/variations'
+description: Fetch Variations
 ---
+
