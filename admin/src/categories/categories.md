@@ -1,5 +1,5 @@
 ---
-categories_url: 'http://localhost:3000/variations'
-description: Fetch Variations
+categories_url: 'http://localhost:3000/categories/'
+description: Fetch Categories
 ---
 
